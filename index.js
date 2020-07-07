@@ -8,6 +8,21 @@
 //resolve // QUESTION 1 here
 
 
+const divOrig = document.getElementById('a-1');
+const divElem = document.createElement('div');
+
+divOrig.appendChild(divElem);
+divElem.className = "square";
+divElem.textContent = 'x';
+
+divElem.addEventListener('click', () => {
+    if (divElem.textContent == 'x') {
+        divElem.textContent = 'o';
+    } else {
+        divElem.textContent = 'x';
+    }
+});
+
 
 
 //------------------------Question 2 ---------------------------
@@ -16,14 +31,34 @@
 //you also need to create a button that makes the remove action of the element selected
 // append the new list as a child of the element with the 'id = a-2'
 // append the button as a child of the element with the 'id = a-2'
-const colors = [ 'red' , 'white', 'black' , 'green' , 'orange'];
+
 
 
 
 
 //resolve // QUESTION 2 here
 
+const colors = ['red', 'white', 'black', 'green', 'orange'];
+const div2 = document.getElementById('a-2');
 
+const selectList = document.createElement("select");
+selectList.id = "mySelect";
+div2.appendChild(selectList);
+
+for (let i = 0; i < colors.length; i++) {
+    let itemOption = document.createElement("option");
+    itemOption.text = colors[i];
+    itemOption.id = colors[i];
+    selectList.appendChild(itemOption);
+};
+
+const removeItemButton = document.querySelector('button.removeItemButton');
+div2.appendChild(removeItemButton);
+removeItemButton.addEventListener('click', () => {
+    const selectedColor = document.getElementById(selectList.value);
+    selectedColor.remove();
+
+});
 
 
 
@@ -34,12 +69,22 @@ const colors = [ 'red' , 'white', 'black' , 'green' , 'orange'];
 //And display the results in the elements with the 'id = volume' and 'id = area' respectively
 //hint: the volumen of a sphere is ((4/3) × π × r^3) and the surface area is (4 × π × r^2)
 
+const radioInput = document.getElementById('radius');
+let volumeIn = document.getElementById('volume');
+let areaIn = document.getElementById('area');
 
-const calculate_sphere = () =>{
+const calculate_sphere = () => {
 
- }
+    const r = parseFloat(radioInput.value);
+    let volume = (4 / 3) * Math.PI * (r ** 3);
+    let area = 4 * Math.PI * (r ** 2);
+    volumeIn.value = volume.toFixed(2);
+    areaIn.value = area.toFixed(2);
+    return false;
+};
 
 window.onload = document.getElementById('MyForm').onsubmit = calculate_sphere; // this execute the volume_sphere function each time the calculate (submit) button is clicked
+
 
 
 
@@ -50,3 +95,48 @@ window.onload = document.getElementById('MyForm').onsubmit = calculate_sphere; /
 
 
 //resolve // QUESTION 4 here
+const buttonOne = document.querySelector('button.buttonOne');
+const buttonTwo = document.querySelector('button.buttonTwo');
+const buttonThree = document.querySelector('button.buttonThree');
+const div4 = document.getElementById('a-4');
+div4.appendChild(buttonOne);
+div4.appendChild(buttonTwo);
+div4.appendChild(buttonThree);
+
+
+console.log(div4);
+buttonOne.addEventListener('click', () => {
+    let questionOne = document.getElementById("question-1");
+    if (questionOne.style.visibility === "hidden") {
+        questionOne.style.visibility = "visible";
+        (buttonOne.textContent = "Hidde question1");
+    } else {
+        questionOne.style.visibility = "hidden";
+        (buttonOne.textContent = "Show question1");
+        
+     }
+});
+
+buttonTwo.addEventListener('click', () => {
+    let questionTwo = document.getElementById("question-2");
+    if (questionTwo.style.visibility === "hidden") {
+        questionTwo.style.visibility = "visible";
+        (buttonTwo.textContent = "Hidde question2");
+    } else {
+        questionTwo.style.visibility = "hidden";
+        (buttonTwo.textContent = "Show question2");
+        
+     }
+});
+buttonThree.addEventListener('click', () => {
+    let questionThree = document.getElementById("question-3");
+    if (questionThree.style.visibility === "hidden") {
+        questionThree.style.visibility = "visible";
+        (buttonThree.textContent = "Hidde question3");
+    } else {
+        questionThree.style.visibility = "hidden";
+        (buttonThree.textContent = "Show question3");
+        
+     }
+});
+
