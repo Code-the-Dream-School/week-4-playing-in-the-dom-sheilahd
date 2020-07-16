@@ -40,7 +40,6 @@ divElem.addEventListener('click', () => {
 
 const colors = ['red', 'white', 'black', 'green', 'orange'];
 const div2 = document.getElementById('a-2');
-
 const selectList = document.createElement("select");
 selectList.id = "mySelect";
 div2.appendChild(selectList);
@@ -52,7 +51,9 @@ for (let i = 0; i < colors.length; i++) {
     selectList.appendChild(itemOption);
 };
 
-const removeItemButton = document.querySelector('button.removeItemButton');
+const removeItemButton = document.createElement("button");
+removeItemButton.innerText = "Remove Item";
+
 div2.appendChild(removeItemButton);
 removeItemButton.addEventListener('click', () => {
     const selectedColor = document.getElementById(selectList.value);
@@ -95,48 +96,71 @@ window.onload = document.getElementById('MyForm').onsubmit = calculate_sphere; /
 
 
 //resolve // QUESTION 4 here
-const buttonOne = document.querySelector('button.buttonOne');
-const buttonTwo = document.querySelector('button.buttonTwo');
-const buttonThree = document.querySelector('button.buttonThree');
-const div4 = document.getElementById('a-4');
+
+let questions = document.querySelectorAll('.question-item');
+
+const div4 = document.getElementById("a-4");
+
+
+// for (i = 0; i < 3; i++) {
+//     let button = document.createElement("button");
+//     button.innerText = (`Hide question ${i + 1}`);
+//     div4.appendChild(button);
+//     console.log(button);
+// }  
+
+
+const buttonOne = document.createElement("button");
+buttonOne.innerText = "Hide question1";
+const buttonTwo = document.createElement("button");
+buttonTwo.innerText = "Hide question2";
+const buttonThree = document.createElement("button");
+buttonThree.innerText = "Hide question3";
+
+// // div4.appendChild(buttonOne, buttonTwo, buttonThree); 
+
 div4.appendChild(buttonOne);
 div4.appendChild(buttonTwo);
 div4.appendChild(buttonThree);
 
+let questionOne = questions[0];
+let questionTwo = questions[1];
+let questionThree = questions[2];
 
-console.log(div4);
 buttonOne.addEventListener('click', () => {
-    let questionOne = document.getElementById("question-1");
-    if (questionOne.style.visibility === "hidden") {
-        questionOne.style.visibility = "visible";
-        (buttonOne.textContent = "Hidde question1");
-    } else {
-        questionOne.style.visibility = "hidden";
-        (buttonOne.textContent = "Show question1");
-        
-     }
+
+   
+        if (questionOne.style.visibility === "hidden") {
+            questionOne.style.visibility = "visible";
+            buttonOne.innerText = "Hide question1";
+
+        } else {
+            questionOne.style.visibility = "hidden";
+            (buttonOne.innerText = "Show question1");
+
+        }
 });
 
 buttonTwo.addEventListener('click', () => {
-    let questionTwo = document.getElementById("question-2");
+
     if (questionTwo.style.visibility === "hidden") {
         questionTwo.style.visibility = "visible";
-        (buttonTwo.textContent = "Hidde question2");
+        buttonTwo.innerText = "Hide question2";
     } else {
         questionTwo.style.visibility = "hidden";
-        (buttonTwo.textContent = "Show question2");
-        
-     }
+        (buttonTwo.innerText = "Show question2");
+
+    }
 });
 buttonThree.addEventListener('click', () => {
-    let questionThree = document.getElementById("question-3");
+
     if (questionThree.style.visibility === "hidden") {
         questionThree.style.visibility = "visible";
-        (buttonThree.textContent = "Hidde question3");
+        buttonThree.innerText = "Hide question3";
     } else {
         questionThree.style.visibility = "hidden";
-        (buttonThree.textContent = "Show question3");
-        
-     }
+        (buttonThree.innerText = "Show question3");
+
+    }
 });
 
