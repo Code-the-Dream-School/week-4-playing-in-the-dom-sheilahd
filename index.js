@@ -3,7 +3,7 @@
 // all right our new element needs style. For that, assign to the new element the className 'square'!. Each time the user clicks on the new element it has to respond changing the displayed text 'x' to 'o'
 
 //resolve // QUESTION 1 here
-
+//get elements by dividers html
 const divOrig = document.getElementById('a-1');
 const divElem = document.createElement('div');
 
@@ -11,6 +11,7 @@ divOrig.appendChild(divElem);
 divElem.className = "square";
 divElem.textContent = 'x';
 
+//add click to divider element if already "x" switch to "o" and viceversa
 divElem.addEventListener('click', () => {
     if (divElem.textContent == 'x') {
         divElem.textContent = 'o';
@@ -30,26 +31,35 @@ divElem.addEventListener('click', () => {
 //resolve // QUESTION 2 here
 
 const colors = ['red', 'white', 'black', 'green', 'orange'];
+// const to select element from html//create select for dropdown
 const div2 = document.getElementById('a-2');
 const selectList = document.createElement("select");
-selectList.id = "mySelect";
+//selectList appendchild of html div
 div2.appendChild(selectList);
+console.log(selectList);
 
+//loop through the array of colors
 for (let i = 0; i < colors.length; i++) {
+    //create option element for dropdown//itemOption text is color (index) on the loop
     let itemOption = document.createElement("option");
     itemOption.text = colors[i];
+    console.log(itemOption.text);
+    //itemOption id is color (index) on the loop//append itemOption to the dropdown list
     itemOption.id = colors[i];
+    console.log(itemOption.id);
     selectList.appendChild(itemOption);
 };
+console.log(selectList);
 
+//create remove button and adding text to it, button appendchild of html div
 const removeItemButton = document.createElement("button");
 removeItemButton.innerText = "Remove Item";
-
 div2.appendChild(removeItemButton);
+
+//add click event to button/new const to get select list by id  previously defined/selected color value remove when click
 removeItemButton.addEventListener('click', () => {
     const selectedColor = document.getElementById(selectList.value);
     selectedColor.remove();
-
 });
 
 //------------------------Question 3 ---------------------------
@@ -57,18 +67,21 @@ removeItemButton.addEventListener('click', () => {
 //take the radius from the input value element with the 'id=radius' in the index.html file
 //And display the results in the elements with the 'id = volume' and 'id = area' respectively
 //hint: the volumen of a sphere is ((4/3) × π × r^3) and the surface area is (4 × π × r^2)
-
+//variables fields//select from html
 const radioInput = document.getElementById('radius');
 let volumeIn = document.getElementById('volume');
 let areaIn = document.getElementById('area');
 
-const calculate_sphere = () => {
 
+const calculate_sphere = () => {
+//const for input value//defining math for each function
     const r = parseFloat(radioInput.value);
     let volume = (4 / 3) * Math.PI * (r ** 3);
     let area = 4 * Math.PI * (r ** 2);
     volumeIn.value = volume.toFixed(2);
+    //results fixed to 2 decimal places
     areaIn.value = area.toFixed(2);
+    //skipping default behavior
     return false;
 };
 
@@ -82,69 +95,31 @@ window.onload = document.getElementById('MyForm').onsubmit = calculate_sphere; /
 
 //resolve // QUESTION 4 here
 
+//create questions var//array from dividers in html
 let questions = document.querySelectorAll('.question-item');
-
 const div4 = document.getElementById("a-4");
 
+  
+//loop to create 3 buttons
+for (let i = 0; i < 3; i++) {
+    let button = document.createElement("button");
+    button.innerText = (`Hide question ${i + 1}`);
+    div4.appendChild(button);
+    
+    //event click for buttons//conditionals using questions array[index] from the loop
+    button.addEventListener('click', () => {
+        if (questions[i].style.visibility == "hidden") {
+            questions[i].style.visibility = "visible";
+            button.innerText = `Hide question ${i + 1}`
 
-// for (i = 0; i < 3; i++) {
-//     let button = document.createElement("button");
-//     button.innerText = (`Hide question ${i + 1}`);
-//     div4.appendChild(button);
-//     console.log(button);
-// }  
-
-
-const buttonOne = document.createElement("button");
-buttonOne.innerText = "Hide question1";
-const buttonTwo = document.createElement("button");
-buttonTwo.innerText = "Hide question2";
-const buttonThree = document.createElement("button");
-buttonThree.innerText = "Hide question3";
-
-// // div4.appendChild(buttonOne, buttonTwo, buttonThree); 
-
-div4.appendChild(buttonOne);
-div4.appendChild(buttonTwo);
-div4.appendChild(buttonThree);
-
-let questionOne = questions[0];
-let questionTwo = questions[1];
-let questionThree = questions[2];
-
-buttonOne.addEventListener('click', () => {
-
-    if (questionOne.style.visibility === "hidden") {
-        questionOne.style.visibility = "visible";
-        buttonOne.innerText = "Hide question1";
-
-    } else {
-        questionOne.style.visibility = "hidden";
-        (buttonOne.innerText = "Show question1");
-
-    }
-});
-
-buttonTwo.addEventListener('click', () => {
-
-    if (questionTwo.style.visibility === "hidden") {
-        questionTwo.style.visibility = "visible";
-        buttonTwo.innerText = "Hide question2";
-    } else {
-        questionTwo.style.visibility = "hidden";
-        (buttonTwo.innerText = "Show question2");
-
-    }
-});
-buttonThree.addEventListener('click', () => {
-
-    if (questionThree.style.visibility === "hidden") {
-        questionThree.style.visibility = "visible";
-        buttonThree.innerText = "Hide question3";
-    } else {
-        questionThree.style.visibility = "hidden";
-        (buttonThree.innerText = "Show question3");
-
-    }
-});
-
+        } else {
+            questions[i].style.visibility = "hidden"
+            button.innerText = (`Show question ${i + 1}`)
+        }
+    });
+}     
+          
+                
+           
+        
+     
